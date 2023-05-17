@@ -8,12 +8,7 @@ export class UserRepository {
   private _repository = DatabaseConnection.connection.getRepository(UserEntity);
 
   async createUser(userdata: CreateUserDTO): Promise<User | undefined> {
-    const user = this._repository.create({
-      name: userdata.name,
-      cpf: userdata.cpf,
-      username: userdata.username,
-      password: userdata.password,
-    });
+    const user = this._repository.create(userdata);
 
     const result = await this._repository.save(user);
 

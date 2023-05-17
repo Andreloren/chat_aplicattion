@@ -9,7 +9,7 @@ export class CreateUserUsecase {
   constructor(UserRepository: UserRepository) {
     this.#UserRepository = UserRepository;
   }
-  async execute(data: CreateUserDTO): Promise<User | UserEntity> {
+  async execute(data: CreateUserDTO): Promise<UserEntity> {
     const result = await this.#UserRepository.createUser(data);
 
     return result!.toJson();
