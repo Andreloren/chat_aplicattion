@@ -20,13 +20,13 @@ export class UserEntity {
   public password!: string;
 
   @Column({ name: "created_at" })
-  public createdAt!: Date;
+  public createdAt?: Date;
 
   @OneToOne(() => UserLoggedEntity, (entity) => entity.LoggedEntity)
   userEntity?: UserLoggedEntity;
 
   @BeforeInsert()
-  public beforeInsert(): void {
+  public beforeInsert?(): void {
     this.uid = randomUUID();
     this.createdAt = new Date(Date.now());
   }
