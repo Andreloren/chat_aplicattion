@@ -2,7 +2,7 @@ import { UserLoggedDTO } from "../shared/utils/dtos";
 
 export class UserLogged {
   #userLoggedId: string;
-  get userLoggedId(): string {
+  get userLoggedId(): string | undefined {
     return this.#userLoggedId;
   }
 
@@ -26,14 +26,7 @@ export class UserLogged {
     return this.#password;
   }
 
-  constructor({
-    userLoggedId,
-
-    name,
-    cpf,
-    username,
-    password,
-  }: UserLoggedDTO) {
+  constructor({ userLoggedId, name, cpf, username, password }: UserLoggedDTO) {
     this.#userLoggedId = userLoggedId;
     this.#name = name;
     this.#cpf = cpf;

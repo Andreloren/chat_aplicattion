@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateTableUsers1684349973928 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -17,7 +12,6 @@ export class CreateTableUsers1684349973928 implements MigrationInterface {
             isPrimary: true,
             isNullable: false,
           },
-          // { name: "uid", type: "uuid", isPrimary: true, isNullable: false },
           {
             name: "name",
             type: "varchar",
@@ -43,15 +37,6 @@ export class CreateTableUsers1684349973928 implements MigrationInterface {
             length: "50",
             isNullable: false,
           },
-          // { name: "created_at", type: "timestamp", isNullable: false },
-        ],
-        foreignKeys: [
-          new TableForeignKey({
-            columnNames: ["logged_id"],
-            referencedColumnNames: ["uid"],
-            referencedTableName: "nome_sobrenome",
-            name: "fk_userLogged_user",
-          }),
         ],
       })
     );
