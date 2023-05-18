@@ -20,7 +20,7 @@ export class UserController {
 
   async listByCpf(req: Request, res: Response) {
     try {
-      const { cpf } = req.params;
+      const { cpf } = req.body;
 
       const useCase = new GetByCpf(new UserRepository());
 
@@ -30,7 +30,7 @@ export class UserController {
         return HttpHelper.badRequest(res, "Usuário não encontrado", 400);
       }
 
-      return HttpHelper.sucess(res, result.toJson());
+      return HttpHelper.sucess(res, result);
     } catch (error) {
       return HttpHelper.error(res, "Server not found");
     }

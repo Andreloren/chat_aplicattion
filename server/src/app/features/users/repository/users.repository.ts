@@ -1,4 +1,3 @@
-import { log } from "console";
 import { DatabaseConnection } from "../../../../main/database/typeorm.connection";
 import { User } from "../../../models";
 import { UserEntity } from "../../../shared/database/entities";
@@ -25,7 +24,7 @@ export class UserRepository {
     return this.mapToModel(result);
   }
 
-  private mapToModel(entity: UserEntity): User {
+  mapToModel(entity: UserEntity): User {
     return new User({
       uid: entity.uid,
       name: entity.name,

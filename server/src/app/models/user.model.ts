@@ -2,7 +2,7 @@ import { UserDTO } from "../shared/utils/dtos";
 
 export class User {
   #uid: string;
-  get userUid(): string {
+  get uid(): string {
     return this.#uid;
   }
 

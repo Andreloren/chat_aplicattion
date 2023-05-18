@@ -22,9 +22,6 @@ export class UserEntity {
   @Column({ name: "created_at" })
   public createdAt?: Date;
 
-  @OneToOne(() => UserLoggedEntity, (entity) => entity.LoggedEntity)
-  userEntity?: UserLoggedEntity;
-
   @BeforeInsert()
   public beforeInsert?(): void {
     this.uid = randomUUID();
