@@ -1,4 +1,3 @@
-import { User } from "../../../models";
 import { UserEntity } from "../../../shared/database/entities";
 import { CreateUserDTO } from "../dtos/user.dtos";
 import { UserRepository } from "../repository/users.repository";
