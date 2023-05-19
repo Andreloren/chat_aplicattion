@@ -49,6 +49,20 @@ export class UserLoggedRepository {
     return this.mapToModel(result);
   }
 
+  async deleteUserLogged(
+    userLoggedId: string
+  ): Promise<UserLoggedEntity | Error> {
+    const result = await this._repositoryLogged.findOneBy({ userLoggedId });
+
+    if (!result) {
+      return new Error("Usuário não logado");
+    }
+
+    await this._repositoryLogged.delete(userLoggedId);
+
+    return result;
+  }
+
   mapToModel(entity: UserLoggedEntity): UserLogged {
     return new UserLogged({
       userLoggedId: entity.userLoggedId,
