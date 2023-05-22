@@ -1,17 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import { Chat } from "./shared/components/chat/Chat";
-import { Join } from "./shared/components/join/Join";
+import React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
 
-function App() {
-  const [count, setCount] = useState(0);
+import PagesRoutes from "./routes/PagesRoutes";
 
+export const App: React.FC = () => {
   return (
     <div className="App">
-      <Chat />
-      <Join />
+      <CssBaseline />
+      <PagesRoutes />
     </div>
   );
-}
+};
 
 export default App;
