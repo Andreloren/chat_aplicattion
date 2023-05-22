@@ -1,4 +1,3 @@
-import { UserLogged } from "../../../models";
 import { UserLoggedEntity } from "../../../shared/database/entities";
 import { UserLoggedRepository } from "../repository/userLogged.repository";
 

@@ -14,6 +14,16 @@ export class UserRepository {
     return this.mapToModel(result);
   }
 
+  async getAll(): Promise<UserEntity[] | Error> {
+    const result = await this._repository.find();
+
+    if (result.length === 0) {
+      return new Error("Não existem Usuários cadastrados");
+    }
+
+    return result.map((userLogged) => userLogged);
+  }
+
   async getByCpf(cpf: string): Promise<User | null> {
     const result = await this._repository.findOneBy({ cpf });
 

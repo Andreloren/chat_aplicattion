@@ -4,24 +4,24 @@ export class HttpHelper {
   public static sucess(
     res: Response,
     data: any,
-    mensagem?: string,
+    message?: string,
     code?: number
   ) {
     return res.status(code ?? 200).send({
-      mensagem,
+      message,
       data,
     });
   }
 
-  public static error(res: Response, mensagem?: string, code?: number) {
+  public static error(res: Response, message?: string, code?: number) {
     return res.status(code ?? 500).send({
-      mensagem,
+      message,
     });
   }
 
-  public static badRequest(res: Response, mensagem?: string, code?: number) {
+  public static badRequest(res: Response, message?: string, code?: number) {
     return res.status(code ?? 400).send({
-      mensagem,
+      message,
     });
   }
 }

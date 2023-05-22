@@ -10,6 +10,8 @@ usersRoutes.post(
   new UserController().create
 );
 
+usersRoutes.get("/all", new UserController().getAll);
+
 usersRoutes.get("/", new UserController().listByCpf);
 
 export { usersRoutes };

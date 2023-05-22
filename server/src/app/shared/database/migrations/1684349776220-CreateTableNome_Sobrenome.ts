@@ -18,7 +18,7 @@ export class CreateTableNome_Sobrenome1684349776220
           {
             name: "cpf",
             type: "char",
-            length: "11",
+            length: "14",
             isNullable: false,
             isUnique: true,
           },

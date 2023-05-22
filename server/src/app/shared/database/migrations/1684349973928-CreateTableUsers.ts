@@ -21,7 +21,7 @@ export class CreateTableUsers1684349973928 implements MigrationInterface {
           {
             name: "cpf",
             type: "char",
-            length: "11",
+            length: "14",
             isNullable: false,
             isUnique: true,
           },
