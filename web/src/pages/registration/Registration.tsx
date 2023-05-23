@@ -1,4 +1,5 @@
 import React, { useEffect, useState, forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { Box, Paper, Snackbar } from "@mui/material";
@@ -26,6 +27,13 @@ import MaskedInput from "react-text-mask";
 
 import { label } from "../../shared/components/types";
 import { buttonStyled } from "../../shared/components/button";
+import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
+import {
+  AddUserAPI,
+  getAllUsers,
+  getAllUsersAPI,
+} from "../../store/modules/users/usersSlice";
+import { NewUser } from "../../interfaces";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -57,6 +65,11 @@ export const Registration: React.FC = () => {
   const [messageUsername, setMessageUsername] = useState("");
   const [messagePassword, setMessagePassword] = useState("");
   const [messageRepPassword, setMessageRepPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const users = useAppSelector(getAllUsers);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!name || !name.match(regexName)) {
@@ -95,6 +108,10 @@ export const Registration: React.FC = () => {
       setMessageRepPassword("");
     }
   }, [password, repPassword, username, cpf, name]);
+
+  useEffect(() => {
+    dispatch(getAllUsersAPI());
+  }, [dispatch]);
 
   const handleChangeInput = (value: string, key: label) => {
     switch (key) {
@@ -162,7 +179,26 @@ export const Registration: React.FC = () => {
   };
 
   const handleClickRegistration = () => {
-    ("");
+    const newUser: NewUser = {
+      name,
+      cpf,
+      username,
+      password,
+    };
+
+    const existingUser = users.find((user) => user.cpf === newUser.cpf);
+
+    if (existingUser) {
+      handleClickSnackBarError();
+      return;
+    }
+
+    dispatch(AddUserAPI(newUser));
+    handleClickSnackBarSucess();
+    clearInputs();
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   return (
@@ -288,7 +324,7 @@ export const Registration: React.FC = () => {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Usuário já cadastrado!!
+          CPF já cadastrado!!
         </Alert>
       </Snackbar>
 

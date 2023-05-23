@@ -2,13 +2,15 @@ import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import PagesRoutes from "./routes/PagesRoutes";
+import { Provider } from "react-redux";
+import { myStore } from "./store";
 
 export const App: React.FC = () => {
   return (
-    <div className="App">
+    <Provider store={myStore}>
       <CssBaseline />
       <PagesRoutes />
-    </div>
+    </Provider>
   );
 };
 
