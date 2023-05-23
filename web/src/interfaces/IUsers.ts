@@ -12,3 +12,11 @@ export interface NewUser {
   username: string;
   password: string;
 }
+
+export interface UserLogged {
+  userLoggedId: string;
+  name: string;
+  cpf: string;
+  username: string;
+  password: string;
+}
