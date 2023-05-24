@@ -36,12 +36,25 @@ export const getUserLoggedByCpfAPI = createAsyncThunk(
   }
 );
 
-export const AddUserLoggedAPI = createAsyncThunk(
+export const addUserLoggedAPI = createAsyncThunk(
   "/users/addUserLogged",
   async (userLogged: UserLogged) => {
     const responseApi = await requestApi.post(
       "/users/logged",
       JSON.stringify(userLogged)
+    );
+
+    const dataParsed = JSON.parse(responseApi.data);
+
+    return dataParsed;
+  }
+);
+
+export const deleteUserLoggedAPI = createAsyncThunk(
+  "users/logged/deleteUserLogged",
+  async (userLoggedId: string) => {
+    const responseApi = await requestApi.delete(
+      `/users/logged/${userLoggedId}`
     );
 
     const dataParsed = JSON.parse(responseApi.data);
@@ -65,9 +78,13 @@ const usersLoggedSlice = createSlice({
       state.message = action.payload.message;
       userLoggedAdapter.setOne(state, action.payload.data);
     });
-    builder.addCase(AddUserLoggedAPI.fulfilled, (state, action) => {
+    builder.addCase(addUserLoggedAPI.fulfilled, (state, action) => {
       state.message = action.payload.message;
       userLoggedAdapter.addOne(state, action.payload.data);
+    });
+    builder.addCase(deleteUserLoggedAPI.fulfilled, (state, action) => {
+      state.message = action.payload.message;
+      userLoggedAdapter.removeOne(state, action.payload.data.userLoggedId);
     });
   },
 });

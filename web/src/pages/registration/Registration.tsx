@@ -149,7 +149,7 @@ export const Registration: React.FC = () => {
   };
 
   const handleCloseSnackBarSucess = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {
@@ -160,7 +160,7 @@ export const Registration: React.FC = () => {
   };
 
   const handleCloseSnackBarError = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {

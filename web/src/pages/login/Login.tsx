@@ -30,7 +30,7 @@ import {
 } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { UserLogged } from "../../interfaces";
 import { getAllUsers } from "../../store/modules/users/usersSlice";
-import { AddUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
+import { addUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { getAllUsersAPI } from "../../store/modules/users/usersSlice";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -171,7 +171,7 @@ export const Login: React.FC = () => {
       password: existingUser.password,
     };
 
-    dispatch(AddUserLoggedAPI(newUserLogged));
+    dispatch(addUserLoggedAPI(newUserLogged));
     handleClickSnackBarSucess();
     setTimeout(() => {
       navigate("/home");
