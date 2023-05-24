@@ -23,6 +23,15 @@ import MaskedInput from "react-text-mask";
 import { buttonStyled } from "../../shared/components/button";
 import { Link, LinkStyled } from "../../shared/components/footer";
 import { Logo } from "../../shared/components/logo";
+import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
+import {
+  getAllUsersLogged,
+  getAllUsersLoggedAPI,
+} from "../../store/modules/usersLogged/usersLoggedSlice";
+import { UserLogged } from "../../interfaces";
+import { getAllUsers } from "../../store/modules/users/usersSlice";
+import { AddUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
+import { getAllUsersAPI } from "../../store/modules/users/usersSlice";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -42,8 +51,13 @@ export const Login: React.FC = () => {
 
   const [openSnackBarSucess, setOpenSnackBarSucess] = useState(false);
   const [openSnackBarError, setOpenSnackBarError] = useState(false);
+  const [openSnackBarErrorLogged, setOpenSnackBarErrorLogged] = useState(false);
 
   const navigate = useNavigate();
+
+  const usersLogged = useAppSelector(getAllUsersLogged);
+  const users = useAppSelector(getAllUsers);
+  const dispatch = useAppDispatch();
 
   const handleChangeInput = (value: string, key: label) => {
     switch (key) {
@@ -77,19 +91,13 @@ export const Login: React.FC = () => {
     }
   }, [cpf, password]);
 
-  //   useEffect(() => {
-  //     dispatch(buscarUsuariosAPI());
-  //   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllUsersLoggedAPI());
+  }, [dispatch]);
 
-  //   useEffect(() => {
-  //     const usuarioLogado = localStorage.getItem("usuarioLogado");
-
-  //     if (usuarioLogado) {
-  //       dispatch(incluirUsuarioLogado(usuarioLogado));
-
-  //       navigate("/home");
-  //     }
-  //   }, [dispatch, navigate]);
+  useEffect(() => {
+    dispatch(getAllUsersAPI());
+  }, [dispatch]);
 
   const handleClickSnackBarSucess = () => {
     setOpenSnackBarSucess(true);
@@ -99,8 +107,12 @@ export const Login: React.FC = () => {
     setOpenSnackBarError(true);
   };
 
+  const handleClickSnackBarErrorLogged = () => {
+    setOpenSnackBarErrorLogged(true);
+  };
+
   const handleCloseSnackBarSucess = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {
@@ -111,7 +123,7 @@ export const Login: React.FC = () => {
   };
 
   const handleCloseSnackBarError = (
-    event?: React.SyntheticEvent | Event,
+    _event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === "clickaway") {
@@ -121,8 +133,49 @@ export const Login: React.FC = () => {
     setOpenSnackBarError(false);
   };
 
+  const handleCloseSnackBarErrorLogged = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBarErrorLogged(false);
+  };
+
   const handleClickLogin = () => {
-    ("");
+    const existingUser = users.find(
+      (user) => user.cpf === cpf && user.password === password
+    );
+
+    if (!existingUser) {
+      handleClickSnackBarError();
+      return;
+    }
+
+    const userLogged = usersLogged.find((userLog) => userLog.cpf === cpf);
+
+    if (userLogged) {
+      handleClickSnackBarErrorLogged();
+      return setTimeout(() => {
+        navigate("/home");
+      }, 2000);
+    }
+
+    const newUserLogged: UserLogged = {
+      userLoggedId: existingUser.uid,
+      name: existingUser.name,
+      cpf: existingUser.cpf,
+      username: existingUser.username,
+      password: existingUser.password,
+    };
+
+    dispatch(AddUserLoggedAPI(newUserLogged));
+    handleClickSnackBarSucess();
+    setTimeout(() => {
+      navigate("/home");
+    }, 2000);
   };
 
   return (
@@ -199,6 +252,22 @@ export const Login: React.FC = () => {
           sx={{ width: "100%" }}
         >
           CPF ou Senha Inválidos!!!
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={openSnackBarErrorLogged}
+        autoHideDuration={1500}
+        onClose={handleCloseSnackBarErrorLogged}
+      >
+        <Alert
+          onClose={handleCloseSnackBarErrorLogged}
+          severity="warning"
+          sx={{ width: "100%" }}
+        >
+          Usuário já Logado!!!
+          <br />
+          Você será redirecionado para o chat.
         </Alert>
       </Snackbar>
 
