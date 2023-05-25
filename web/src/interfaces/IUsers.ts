@@ -22,6 +22,9 @@ export interface UserLogged {
 }
 
 export interface UserLoggedMap {
-  userLoggedId: string;
+  userLoggedId?: string;
   username: string;
+}
+export interface UserLoggedLocal {
+  userLoggedId: string;
 }
