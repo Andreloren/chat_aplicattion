@@ -14,6 +14,6 @@ usersLoggedRoutes.get("/", new UserLoggedController().listByCpfLogged);
 
 usersLoggedRoutes.get("/all", new UserLoggedController().getAllLogged);
 
-usersLoggedRoutes.delete("/:userLoggedId", new UserLoggedController().delete);
+usersLoggedRoutes.delete("/:cpf", new UserLoggedController().delete);
 
 export { usersLoggedRoutes };

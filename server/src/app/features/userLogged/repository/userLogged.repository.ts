@@ -49,16 +49,14 @@ export class UserLoggedRepository {
     return this.mapToModel(result);
   }
 
-  async deleteUserLogged(
-    userLoggedId: string
-  ): Promise<UserLoggedEntity | Error> {
-    const result = await this._repositoryLogged.findOneBy({ userLoggedId });
+  async deleteUserLogged(cpf: string): Promise<UserLoggedEntity | Error> {
+    const result = await this._repositoryLogged.findOneBy({ cpf });
 
     if (!result) {
       return new Error("Usuário não logado");
     }
 
-    await this._repositoryLogged.delete(userLoggedId);
+    await this._repositoryLogged.delete(cpf);
 
     return result;
   }

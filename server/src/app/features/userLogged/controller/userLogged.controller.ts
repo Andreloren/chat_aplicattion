@@ -60,11 +60,11 @@ export class UserLoggedController {
 
   async delete(req: Request, res: Response) {
     try {
-      const { userLoggedId } = req.params;
+      const { cpf } = req.params;
 
       const useCase = new DeleteUserLoggedUsecase(new UserLoggedRepository());
 
-      const result = await useCase.execute(userLoggedId);
+      const result = await useCase.execute(cpf);
 
       if (result instanceof Error) {
         return res.status(400).json({ mensagem: result.message });

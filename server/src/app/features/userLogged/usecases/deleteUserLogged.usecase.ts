@@ -8,10 +8,8 @@ export class DeleteUserLoggedUsecase {
     this.#UserLoggedRepository = UserLoggedRepository;
   }
 
-  async execute(userLoggedId: string): Promise<UserLoggedEntity | Error> {
-    const result = await this.#UserLoggedRepository.deleteUserLogged(
-      userLoggedId
-    );
+  async execute(cpf: string): Promise<UserLoggedEntity | Error> {
+    const result = await this.#UserLoggedRepository.deleteUserLogged(cpf);
 
     return result;
   }
