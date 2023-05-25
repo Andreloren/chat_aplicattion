@@ -20,3 +20,8 @@ export interface UserLogged {
   username: string;
   password: string;
 }
+
+export interface UserLoggedMap {
+  userLoggedId: string;
+  username: string;
+}

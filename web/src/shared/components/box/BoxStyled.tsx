@@ -13,3 +13,8 @@ export const formBoxStyledReg = {
   width: "100%",
   marginTop: "10px",
 };
+
+export const boxChatStyled = {
+  margin: "20px 30px",
+  padding: "5px",
+};
