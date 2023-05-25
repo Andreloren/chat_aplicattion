@@ -9,6 +9,7 @@ interface ButtonIconPropos {
   size: buttonSize;
   children: React.ReactNode;
   sx?: SxProps;
+  text?: string;
 }
 
 export const ButtonIcon: React.FC<ButtonIconPropos> = ({
@@ -16,11 +17,13 @@ export const ButtonIcon: React.FC<ButtonIconPropos> = ({
   size,
   children,
   sx,
+  text,
 }) => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton aria-label="delete" size={size} onClick={myOnClick} sx={sx}>
         {children}
+        {text}
       </IconButton>
     </Stack>
   );

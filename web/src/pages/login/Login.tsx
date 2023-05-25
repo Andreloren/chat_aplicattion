@@ -32,6 +32,7 @@ import { UserLogged } from "../../interfaces";
 import { getAllUsers } from "../../store/modules/users/usersSlice";
 import { addUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { getAllUsersAPI } from "../../store/modules/users/usersSlice";
+import { includeUserLocal } from "../../store/modules/userLocal/userLocalSlice";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -99,6 +100,20 @@ export const Login: React.FC = () => {
     dispatch(getAllUsersAPI());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getAllUsersAPI());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const userLocal = localStorage.getItem("userLogged");
+
+    if (userLocal) {
+      dispatch(includeUserLocal(userLocal));
+
+      navigate("/home");
+    }
+  }, [dispatch, navigate]);
+
   const handleClickSnackBarSucess = () => {
     setOpenSnackBarSucess(true);
   };
@@ -158,9 +173,7 @@ export const Login: React.FC = () => {
 
     if (userLogged) {
       handleClickSnackBarErrorLogged();
-      return setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+      return;
     }
 
     const newUserLogged: UserLogged = {
@@ -171,6 +184,7 @@ export const Login: React.FC = () => {
       password: existingUser.password,
     };
 
+    dispatch(includeUserLocal(newUserLogged.username));
     dispatch(addUserLoggedAPI(newUserLogged));
     handleClickSnackBarSucess();
     setTimeout(() => {
@@ -266,8 +280,6 @@ export const Login: React.FC = () => {
           sx={{ width: "100%" }}
         >
           Usuário já Logado!!!
-          <br />
-          Você será redirecionado para o chat.
         </Alert>
       </Snackbar>
 

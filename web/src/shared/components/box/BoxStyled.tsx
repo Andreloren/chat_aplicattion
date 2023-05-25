@@ -15,6 +15,6 @@ export const formBoxStyledReg = {
 };
 
 export const boxChatStyled = {
-  margin: "20px 30px",
+  margin: "30px 30px",
   padding: "5px",
 };

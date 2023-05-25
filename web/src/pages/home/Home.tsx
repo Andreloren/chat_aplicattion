@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
 import {
   deleteUserLoggedAPI,
   getAllUsersLogged,
   getAllUsersLoggedAPI,
-  getUserLoggedByCpf,
 } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { Box, Grid } from "@mui/material";
 
 import { boxChatStyled } from "../../shared/components/box/BoxStyled";
 import { Heading } from "../../shared/components/heading/Heading";
 import { UserLogMap } from "../../shared/components/grid/UserLogMap";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { ButtonIcon } from "../../shared/components/button";
+import { LogoutStyled } from "../../shared/components/logout/LogoutStyle";
+import { cleanUserLocal } from "../../store/modules/userLocal/userLocalSlice";
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
 
-  const userLog = useAppSelector((estado) => estado.userLogged.entities);
+  const userLog = useAppSelector((state) => state.userLocal);
   const usersLogged = useAppSelector(getAllUsersLogged);
   const dispatch = useAppDispatch();
 
@@ -28,14 +31,35 @@ export const Home: React.FC = () => {
     const navigateLogin = () => {
       navigate("/");
     };
+    console.log(usersLogged);
+
+    console.log(userLog);
 
     if (!userLog) {
       navigateLogin();
     }
-  }, [userLog, navigate]);
+  }, [userLog, usersLogged, navigate]);
+
+  const handleRemoveUserLogged = () => {
+    const user = usersLogged.find((u) => u.username === userLog);
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    dispatch(deleteUserLoggedAPI(user!.cpf));
+    dispatch(cleanUserLocal());
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
 
   return (
     <>
+      <ButtonIcon
+        size="large"
+        myOnClick={handleRemoveUserLogged}
+        children={<LogoutIcon />}
+        sx={LogoutStyled}
+        text="Logout"
+      />
       <Box sx={boxChatStyled}>
         <Grid container spacing={2}>
           <Grid

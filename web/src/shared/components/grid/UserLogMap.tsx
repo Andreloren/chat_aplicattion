@@ -2,26 +2,19 @@ import React, { useEffect } from "react";
 
 import { Avatar, Grid } from "@mui/material";
 import { UserLoggedMap } from "../../../interfaces";
-import { useAppDispatch, useAppSelector } from "../../../store/modules/hooks";
-import {
-  deleteUserLoggedAPI,
-  getAllUsersLogged,
-  getAllUsersLoggedAPI,
-} from "../../../store/modules/usersLogged/usersLoggedSlice";
-import { ButtonIcon } from "../button";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { useAppDispatch } from "../../../store/modules/hooks";
+import { getAllUsersLoggedAPI } from "../../../store/modules/usersLogged/usersLoggedSlice";
 
 export const UserLogMap: React.FC<UserLoggedMap> = ({
-  userLoggedId,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   username,
 }) => {
   const dispatch = useAppDispatch();
-  const userLogged = useAppSelector((log) => log.userLogged);
-  const usersLogged = useAppSelector(getAllUsersLogged);
 
-  const handleRemoveUserLogged = () => {
-    dispatch(deleteUserLoggedAPI(userLoggedId));
-  };
+  useEffect(() => {
+    dispatch(getAllUsersLoggedAPI());
+  }, [dispatch]);
 
   function stringAvatar(name: string) {
     return {
@@ -36,12 +29,6 @@ export const UserLogMap: React.FC<UserLoggedMap> = ({
         {...stringAvatar(`${username}`)}
       />
       {username}
-      <ButtonIcon
-        size="small"
-        myOnClick={handleRemoveUserLogged}
-        children={<LogoutIcon />}
-        sx={{ color: "#2473ce" }}
-      />
     </Grid>
   );
 };
