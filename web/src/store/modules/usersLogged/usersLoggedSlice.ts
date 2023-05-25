@@ -52,10 +52,8 @@ export const addUserLoggedAPI = createAsyncThunk(
 
 export const deleteUserLoggedAPI = createAsyncThunk(
   "users/logged/deleteUserLogged",
-  async (userLoggedId: string) => {
-    const responseApi = await requestApi.delete(
-      `/users/logged/${userLoggedId}`
-    );
+  async (cpf: string) => {
+    const responseApi = await requestApi.delete(`/users/logged/${cpf}`);
 
     const dataParsed = JSON.parse(responseApi.data);
 
