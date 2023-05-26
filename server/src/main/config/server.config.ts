@@ -6,7 +6,9 @@ import { makeRoutes } from "./routes.config";
 
 const app = express();
 const serverHttp = http.createServer(app);
-const io = new Server(serverHttp);
+const io = new Server(serverHttp, {
+  cors: { origin: "http://localhost:5173" },
+});
 
 app.use(cors());
 app.use(express.json());
