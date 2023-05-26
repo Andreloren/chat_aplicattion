@@ -1,5 +1,6 @@
 import React, { useEffect, useState, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { io, Socket } from "socket.io-client";
 
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { Box, Paper, Snackbar } from "@mui/material";
@@ -40,6 +41,9 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const socket: Socket = io("http://localhost:5151");
 
 export const Login: React.FC = () => {
   const [cpf, setCpf] = useState("");
@@ -101,10 +105,6 @@ export const Login: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAllUsersAPI());
-  }, [dispatch]);
-
-  useEffect(() => {
     const userLocal = localStorage.getItem("userLogged");
 
     if (userLocal) {
@@ -159,7 +159,7 @@ export const Login: React.FC = () => {
     setOpenSnackBarErrorLogged(false);
   };
 
-  const handleClickLogin = () => {
+  const handleClickLogin = async () => {
     const existingUser = users.find(
       (user) => user.cpf === cpf && user.password === password
     );
@@ -168,7 +168,6 @@ export const Login: React.FC = () => {
       handleClickSnackBarError();
       return;
     }
-
     const userLogged = usersLogged.find((userLog) => userLog.cpf === cpf);
 
     if (userLogged) {
@@ -184,8 +183,13 @@ export const Login: React.FC = () => {
       password: existingUser.password,
     };
 
+    const username = newUserLogged.username;
+    console.log(username);
+
+    socket.connect();
     dispatch(includeUserLocal(newUserLogged.username));
     dispatch(addUserLoggedAPI(newUserLogged));
+    socket.emit("set_username", username);
     handleClickSnackBarSucess();
     setTimeout(() => {
       navigate("/home");

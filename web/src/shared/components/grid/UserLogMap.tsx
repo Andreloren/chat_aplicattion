@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Avatar, Grid } from "@mui/material";
 import { UserLoggedMap } from "../../../interfaces";
 import { useAppDispatch } from "../../../store/modules/hooks";
-import { getAllUsersLoggedAPI } from "../../../store/modules/usersLogged/usersLoggedSlice";
 
 export const UserLogMap: React.FC<UserLoggedMap> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -11,10 +10,6 @@ export const UserLogMap: React.FC<UserLoggedMap> = ({
   username,
 }) => {
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getAllUsersLoggedAPI());
-  }, [dispatch]);
 
   function stringAvatar(name: string) {
     return {

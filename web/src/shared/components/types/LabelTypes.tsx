@@ -3,4 +3,5 @@ export type label =
   | "Digite seu Username"
   | "Digite seu Nome e Sobrenome"
   | "Digite seu CPF"
-  | "Confirmação de Senha";
+  | "Confirmação de Senha"
+  | "Digite sua mensagem";
