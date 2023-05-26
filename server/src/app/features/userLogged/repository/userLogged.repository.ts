@@ -30,14 +30,14 @@ export class UserLoggedRepository {
     return result;
   }
 
-  async getAll(): Promise<UserLoggedEntity[] | Error> {
+  async getAll(): Promise<UserLoggedEntity[] | null> {
     const result = await this._repositoryLogged.find();
 
-    if (result.length === 0) {
-      return new Error("Não existem Usuários logados");
+    if (!result) {
+      return null;
     }
 
-    return result.map((userLogged) => userLogged);
+    return await result.map((userLogged) => userLogged);
   }
 
   async getByCpfLogged(cpf: string): Promise<UserLogged | null> {

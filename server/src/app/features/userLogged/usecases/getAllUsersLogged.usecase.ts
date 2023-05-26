@@ -8,7 +8,7 @@ export class GetAllUserLoggedUsecase {
     this.#UserLoggedRepository = UserLoggedRepository;
   }
 
-  async execute(): Promise<UserLoggedEntity[] | Error> {
+  async execute(): Promise<UserLoggedEntity[] | null> {
     const result = await this.#UserLoggedRepository.getAll();
 
     return result;

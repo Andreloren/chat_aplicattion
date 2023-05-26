@@ -30,8 +30,8 @@ export class UserLoggedController {
 
       const result = await useCase.execute();
 
-      if (result instanceof Error) {
-        return res.status(400).json({ mensagem: result.message });
+      if (!result) {
+        return HttpHelper.badRequest(res, "Nenhum Usuário logado", 400);
       }
 
       return HttpHelper.sucess(res, result);
