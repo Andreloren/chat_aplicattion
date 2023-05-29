@@ -15,6 +15,13 @@ export const formBoxStyledReg = {
 };
 
 export const boxChatStyled = {
-  margin: "30px 30px",
+  display: "flex",
+  margin: "50px 100px",
   padding: "5px",
+};
+
+export const boxInputChatStyled = {
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "50px",
 };

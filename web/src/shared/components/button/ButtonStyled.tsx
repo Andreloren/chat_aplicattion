@@ -4,3 +4,6 @@ export const buttonStyled = {
   margin: "10px 6px 0",
   backgroundColor: "#2473ce",
 };
+export const buttonChatStyled = {
+  color: "#2473ce",
+};

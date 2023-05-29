@@ -6,20 +6,24 @@ import {
   getAllUsersLogged,
   getAllUsersLoggedAPI,
 } from "../../store/modules/usersLogged/usersLoggedSlice";
-import { Box, Grid, Input } from "@mui/material";
+import { Box, Grid, Input, Typography } from "@mui/material";
 
-import { boxChatStyled } from "../../shared/components/box/BoxStyled";
+import {
+  boxChatStyled,
+  boxInputChatStyled,
+} from "../../shared/components/box/BoxStyled";
 import { Heading } from "../../shared/components/heading/Heading";
 import { UserLogMap } from "../../shared/components/grid/UserLogMap";
 import LogoutIcon from "@mui/icons-material/Logout";
-import {
-  Button,
-  ButtonIcon,
-  buttonStyled,
-} from "../../shared/components/button";
+import SendIcon from "@mui/icons-material/Send";
+import { ButtonIcon, buttonChatStyled } from "../../shared/components/button";
 import { LogoutStyled } from "../../shared/components/logout/LogoutStyle";
 import { cleanUserLocal } from "../../store/modules/userLocal/userLocalSlice";
 import { socket } from "../login/Login";
+import {
+  ChatGridStyled,
+  ChatUsersStyled,
+} from "../../shared/components/grid/GridStyled";
 
 export const Home: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -32,7 +36,6 @@ export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const scrollRef = useRef<HTMLDivHTMLDivElement | undefined>();
 
   useEffect(() => {
     dispatch(getAllUsersLoggedAPI());
@@ -69,17 +72,12 @@ export const Home: React.FC = () => {
     socket.emit("message", message);
     clearInput();
     focusInput();
-    scrollDown();
   };
 
   const getEnterKey = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       handleSubmitChat();
     }
-  };
-
-  const scrollDown = () => {
-    scrollRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const focusInput = () => {
@@ -89,6 +87,9 @@ export const Home: React.FC = () => {
   const clearInput = () => {
     setMessage("");
   };
+
+  const author: any = messageList.find((user: any) => user.author === userLog);
+  console.log(author?.author);
 
   return (
     <>
@@ -105,13 +106,13 @@ export const Home: React.FC = () => {
             container
             direction="column"
             alignItems="center"
-            xs={2}
-            sx={{ gap: 2, border: "1px solid black", marginTop: 2 }}
+            xs={3}
+            sx={ChatUsersStyled}
           >
             <Heading
               text="USUÁRIOS LOGADOS"
               psize="body2"
-              sx={{ marginTop: 2 }}
+              sx={{ marginTop: 2, marginBottom: 2 }}
             />
 
             {usersLogged.map((user) => (
@@ -123,36 +124,79 @@ export const Home: React.FC = () => {
             ))}
           </Grid>
 
-          <Grid item xs={10} sx={{ border: "1px solid black", marginTop: 2 }}>
+          <Grid item xs={6} sx={ChatGridStyled}>
             <Heading
               text="MENSAGENS DO CHAT"
               psize="body2"
-              sx={{ textAlign: "center" }}
+              sx={{ textAlign: "center", marginBottom: "20px" }}
             />
+
             {messageList.map((message: any, index) => (
-              <p key={index}>
-                {message.author}:{message.text}
-              </p>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems:
+                    message.author === author?.author
+                      ? "flex-start"
+                      : "flex-end",
+                }}
+              >
+                <Typography
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    alignItems:
+                      message.author === author?.author
+                        ? "flex-start"
+                        : "flex-end",
+                    justifyContent:
+                      message.author === author?.author
+                        ? "flex-start"
+                        : "flex-end",
+                    textAlign:
+                      message.author === author?.author ? "left" : "right",
+                    backgroundColor:
+                      message.author === author?.author
+                        ? "rgb(19, 228, 217, 0.3)"
+                        : "rgb(133, 119, 151,0.3)",
+                    padding: "10px",
+                    marginTop: "10px",
+                    width: "200px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  {message.text}
+                </Typography>
+                <Typography
+                  sx={{
+                    textAlign:
+                      message.author === author?.author ? "left" : "right",
+                    marginTop: "5px",
+                  }}
+                >
+                  {message.author}
+                </Typography>
+              </Box>
             ))}
-            <div ref={scrollRef}></div>
+            <Box sx={boxInputChatStyled}>
+              <Input
+                sx={{ width: "20rem" }}
+                onKeyDown={(e: any) => getEnterKey(e)}
+                inputRef={inputRef}
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+              />
+              <ButtonIcon
+                children={<SendIcon fontSize="small" />}
+                sx={buttonChatStyled}
+                size="small"
+                myOnClick={handleSubmitChat}
+              />
+            </Box>
           </Grid>
-          <Input
-            onKeyDown={(e: any) => getEnterKey(e)}
-            inputRef={inputRef}
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-          />
-          <Button
-            sx={buttonStyled}
-            text="Enviar"
-            typeButton="button"
-            color="primary"
-            size="medium"
-            variation="contained"
-            myOnClick={handleSubmitChat}
-          />
         </Grid>
       </Box>
     </>
