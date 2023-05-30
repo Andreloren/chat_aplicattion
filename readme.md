@@ -13,7 +13,7 @@ Aplicação de Chat On-line
 
 <br>
 
-## 💻 Tecnologias Utilizadas
+## 💻 Tecnologia
 
 Frontend:
 
@@ -54,7 +54,7 @@ Durante o desenvolvimento, você pode executar o servidor de desenvolvimento par
 
 - npm run dev
 
-Backend:
+### Backend:
 
 Certifique-se de ter o PostgreSQL instalado em seu sistema.
 Abra um terminal ou prompt de comando e navegue até o diretório SERVER.
