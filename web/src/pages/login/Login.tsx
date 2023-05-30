@@ -1,5 +1,6 @@
 import React, { useEffect, useState, forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { io, Socket } from "socket.io-client";
 
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
@@ -10,7 +11,6 @@ import { label } from "../../shared/components/types";
 import { MaskCpf, regexCpf } from "../../shared/components/regex/Masks";
 import { Heading } from "../../shared/components/heading/Heading";
 import { Button } from "../../shared/components/button/Button";
-
 import {
   boxStyled,
   formBoxStyledReg,
@@ -20,21 +20,24 @@ import {
   InputPassword,
   InputRegistration,
 } from "../../shared/components/input/Inputs";
-import MaskedInput from "react-text-mask";
 import { buttonStyled } from "../../shared/components/button";
 import { Link, LinkStyled } from "../../shared/components/footer";
 import { Logo } from "../../shared/components/logo";
+import { HeadingLoginStyled } from "../../shared/components/heading";
+
 import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
 import {
   getAllUsersLogged,
   getAllUsersLoggedAPI,
 } from "../../store/modules/usersLogged/usersLoggedSlice";
-import { UserLogged } from "../../interfaces";
 import { getAllUsers } from "../../store/modules/users/usersSlice";
 import { addUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { getAllUsersAPI } from "../../store/modules/users/usersSlice";
 import { includeUserLocal } from "../../store/modules/userLocal/userLocalSlice";
-import { HeadingLoginStyled } from "../../shared/components/heading/HeadingStyled";
+
+import { UserLogged } from "../../interfaces";
+
+import MaskedInput from "react-text-mask";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,

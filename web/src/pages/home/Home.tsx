@@ -1,12 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { socket } from "../login/Login";
+
 import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
 import {
   deleteUserLoggedAPI,
   getAllUsersLogged,
   getAllUsersLoggedAPI,
 } from "../../store/modules/usersLogged/usersLoggedSlice";
+import { cleanUserLocal } from "../../store/modules/userLocal/userLocalSlice";
+
 import { Box, Grid, Input, Typography } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SendIcon from "@mui/icons-material/Send";
 
 import {
   boxChatStyled,
@@ -14,17 +21,13 @@ import {
 } from "../../shared/components/box/BoxStyled";
 import { Heading } from "../../shared/components/heading/Heading";
 import { UserLogMap } from "../../shared/components/grid/UserLogMap";
-import LogoutIcon from "@mui/icons-material/Logout";
-import SendIcon from "@mui/icons-material/Send";
 import { ButtonIcon, buttonChatStyled } from "../../shared/components/button";
 import { LogoutStyled } from "../../shared/components/logout/LogoutStyle";
-import { cleanUserLocal } from "../../store/modules/userLocal/userLocalSlice";
-import { socket } from "../login/Login";
+import { ChatGridStyled, ChatUsersStyled } from "../../shared/components/grid";
 import {
-  ChatGridStyled,
-  ChatUsersStyled,
-} from "../../shared/components/grid/GridStyled";
-import { HeadingChatStyled } from "../../shared/components/heading/HeadingStyled";
+  HeadingChatStyled,
+  HeadingChatUsersStyled,
+} from "../../shared/components/heading";
 
 export const Home: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -124,7 +127,7 @@ export const Home: React.FC = () => {
             <Heading
               text="USUÁRIOS LOGADOS"
               psize="h6"
-              sx={{ marginTop: 2, marginBottom: 2 }}
+              sx={HeadingChatUsersStyled}
             />
 
             {usersLogged.map((user) => (
@@ -194,6 +197,7 @@ export const Home: React.FC = () => {
             <div ref={bottomRef}></div>
             <Box sx={boxInputChatStyled}>
               <Input
+                placeholder="Digite sua Mensagem"
                 sx={{ width: "20rem", marginTop: 1 }}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onKeyDown={(e: any) => getEnterKey(e)}

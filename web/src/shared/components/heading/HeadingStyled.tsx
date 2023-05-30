@@ -7,3 +7,7 @@ export const HeadingChatStyled = {
   textAlign: "center",
   marginBottom: "20px",
 };
+
+export const HeadingChatUsersStyled = {
+  margin: "20px 0",
+};

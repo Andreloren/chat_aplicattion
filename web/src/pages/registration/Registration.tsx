@@ -5,7 +5,7 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { Box, Paper, Snackbar } from "@mui/material";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 
-import { Heading } from "../../shared/components/heading/Heading";
+import { Heading } from "../../shared/components/heading";
 import {
   boxStyled,
   formBoxStyledReg,
@@ -17,6 +17,9 @@ import {
 } from "../../shared/components/input/Inputs";
 import { Button } from "../../shared/components/button/Button";
 import { LinkStyled, Link } from "../../shared/components/footer";
+import { label } from "../../shared/components/types";
+import { buttonStyled } from "../../shared/components/button";
+import { HeadingLoginStyled } from "../../shared/components/heading";
 
 import {
   regexCpf,
@@ -25,16 +28,14 @@ import {
 } from "../../shared/components/regex/Masks";
 import MaskedInput from "react-text-mask";
 
-import { label } from "../../shared/components/types";
-import { buttonStyled } from "../../shared/components/button";
 import { useAppDispatch, useAppSelector } from "../../store/modules/hooks";
 import {
   AddUserAPI,
   getAllUsers,
   getAllUsersAPI,
 } from "../../store/modules/users/usersSlice";
+
 import { NewUser } from "../../interfaces";
-import { HeadingLoginStyled } from "../../shared/components/heading/HeadingStyled";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
