@@ -22,6 +22,6 @@ export const boxChatStyled = {
 
 export const boxInputChatStyled = {
   display: "flex",
-  justifyContent: "center",
-  marginTop: "50px",
+  // justifyContent: "center",
+  margin: "30px 0 20px",
 };

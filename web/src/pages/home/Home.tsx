@@ -28,6 +28,7 @@ import {
 export const Home: React.FC = () => {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  // const [userChat, setUserChat] = useState([]);
 
   const navigate = useNavigate();
 
@@ -36,17 +37,28 @@ export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   useEffect(() => {
     dispatch(getAllUsersLoggedAPI());
   }, [dispatch]);
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
 
   useEffect((): any => {
     socket.on("receive_message", (data) => {
       setMessageList((messages): any => [...messages, data]);
     });
     return () => socket.off("receive_message");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
+
+  useEffect(() => {
+    scrollDown();
+  }, [messageList]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const navigateLogin = () => {
@@ -63,6 +75,7 @@ export const Home: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     dispatch(deleteUserLoggedAPI(user!.cpf));
     dispatch(cleanUserLocal());
+    socket.disconnect();
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -72,6 +85,7 @@ export const Home: React.FC = () => {
     socket.emit("message", message);
     clearInput();
     focusInput();
+    scrollDown();
   };
 
   const getEnterKey = (e: KeyboardEvent) => {
@@ -84,12 +98,15 @@ export const Home: React.FC = () => {
     inputRef.current?.focus();
   };
 
+  const scrollDown = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const clearInput = () => {
     setMessage("");
   };
 
   const author: any = messageList.find((user: any) => user.author === userLog);
-  console.log(author?.author);
 
   return (
     <>
@@ -124,7 +141,7 @@ export const Home: React.FC = () => {
             ))}
           </Grid>
 
-          <Grid item xs={6} sx={ChatGridStyled}>
+          <Grid item xs={7} sx={ChatGridStyled}>
             <Heading
               text="MENSAGENS DO CHAT"
               psize="body2"
@@ -179,6 +196,7 @@ export const Home: React.FC = () => {
                 </Typography>
               </Box>
             ))}
+            <div ref={bottomRef}></div>
             <Box sx={boxInputChatStyled}>
               <Input
                 sx={{ width: "20rem" }}
