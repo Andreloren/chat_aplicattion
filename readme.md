@@ -41,14 +41,18 @@ Backend:
 
 Clone este repositório para o seu ambiente local.
 
-Frontend:
+# Frontend:
 
 Abra um terminal ou prompt de comando e navegue até o diretório WEB.
-Execute o seguinte comando para instalar as dependências do projeto: - npm install
+Execute o seguinte comando para instalar as dependências do projeto:
+
+- npm install
 
 Este comando instalará todas as dependências necessárias listadas no arquivo package.json.
 
-Durante o desenvolvimento, você pode executar o servidor de desenvolvimento para visualizar o projeto no navegador. Execute o seguinte comando: - npm run dev
+Durante o desenvolvimento, você pode executar o servidor de desenvolvimento para visualizar o projeto no navegador. Execute o seguinte comando:
+
+- npm run dev
 
 Backend:
 
