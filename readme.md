@@ -8,6 +8,7 @@ Aplicação de Chat On-line
   <a href="#-tecnologia">Tecnologias Utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-configuração">Configuração do Ambiente</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-desenvolvimento">Desenvolvimento</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-contribuição">Contribuição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-contato">Contato</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
@@ -68,7 +69,7 @@ Certifique-se de ter o PostgreSQL configurado corretamente em seu sistema. Crie 
 
 Este projeto utiliza o TypeORM para a criação e gerenciamento do banco de dados. Execute as migrações do banco de dados com o seguinte comando:
 
-- migration:run": Cria as tabelas no banco de dados.
+- migration:run: Cria as tabelas no banco de dados.
 - migration:show: Mostra as migrations pendentes.
 
 Após a configuração do banco de dados e das dependências, execute o seguinte comando para iniciar o servidor:
@@ -148,4 +149,10 @@ Após a configuração do banco de dados e das dependências, execute o seguinte
 - package.json
 - ...
 
-Trabalho final do Modulo Banco de Dados III da Growdev. API NoteSystem_API_Arquitetura a ser consumida pelo Note System [Note System Web](https://github.com/Andreloren/Note_System_Web)
+## 📓 Contribuição
+
+Se você deseja contribuir para este projeto, fique à vontade para abrir pull requests com suas alterações. Certifique-se de seguir as diretrizes de contribuição do projeto e de descrever claramente as alterações propostas.
+
+## 📓 Contato
+
+Em caso de dúvidas ou sugestões, entre em contato com [André Lorente](https://www.linkedin.com/in/andrelorente/).
