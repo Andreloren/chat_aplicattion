@@ -41,7 +41,7 @@ Backend:
 
 Clone este repositório para o seu ambiente local.
 
-# Frontend:
+### Frontend:
 
 Abra um terminal ou prompt de comando e navegue até o diretório WEB.
 Execute o seguinte comando para instalar as dependências do projeto:
