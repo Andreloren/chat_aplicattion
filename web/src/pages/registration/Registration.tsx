@@ -34,6 +34,7 @@ import {
   getAllUsersAPI,
 } from "../../store/modules/users/usersSlice";
 import { NewUser } from "../../interfaces";
+import { HeadingLoginStyled } from "../../shared/components/heading/HeadingStyled";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -207,7 +208,7 @@ export const Registration: React.FC = () => {
         <Heading
           text="CADASTRE SEU USUÁRIO"
           psize="h5"
-          sx={{ mx: 3, mt: 1, color: "#2473ce" }}
+          sx={HeadingLoginStyled}
         />
         <Box sx={formBoxStyledReg}>
           <InputRegistration

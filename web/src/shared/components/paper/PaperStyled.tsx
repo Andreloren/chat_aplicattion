@@ -4,4 +4,5 @@ export const paperStyledReg = {
   alignItems: "center",
   padding: "10px 25px",
   position: "absolute",
+  borderRadius: 3,
 };

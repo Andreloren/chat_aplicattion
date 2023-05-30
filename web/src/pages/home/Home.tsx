@@ -24,6 +24,7 @@ import {
   ChatGridStyled,
   ChatUsersStyled,
 } from "../../shared/components/grid/GridStyled";
+import { HeadingChatStyled } from "../../shared/components/heading/HeadingStyled";
 
 export const Home: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -119,16 +120,10 @@ export const Home: React.FC = () => {
       />
       <Box sx={boxChatStyled}>
         <Grid container spacing={2}>
-          <Grid
-            container
-            direction="column"
-            alignItems="center"
-            xs={3}
-            sx={ChatUsersStyled}
-          >
+          <Grid container direction="column" xs={3} sx={ChatUsersStyled}>
             <Heading
               text="USUÁRIOS LOGADOS"
-              psize="body2"
+              psize="h6"
               sx={{ marginTop: 2, marginBottom: 2 }}
             />
 
@@ -141,11 +136,11 @@ export const Home: React.FC = () => {
             ))}
           </Grid>
 
-          <Grid item xs={7} sx={ChatGridStyled}>
+          <Grid item xs={8} sx={ChatGridStyled}>
             <Heading
               text="MENSAGENS DO CHAT"
-              psize="body2"
-              sx={{ textAlign: "center", marginBottom: "20px" }}
+              psize="h6"
+              sx={HeadingChatStyled}
             />
 
             {messageList.map((message: any, index) => (
@@ -199,7 +194,8 @@ export const Home: React.FC = () => {
             <div ref={bottomRef}></div>
             <Box sx={boxInputChatStyled}>
               <Input
-                sx={{ width: "20rem" }}
+                sx={{ width: "20rem", marginTop: 1 }}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onKeyDown={(e: any) => getEnterKey(e)}
                 inputRef={inputRef}
                 value={message}

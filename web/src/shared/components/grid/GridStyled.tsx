@@ -4,7 +4,8 @@ export const ChatGridStyled = {
   justifyContent: "space-between",
   padding: "0 10px",
   marginTop: 2,
-  marginLeft: "150px",
+  borderRadius: 2,
+  backgroundColor: "rgb(255, 251, 247)",
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
 };
 

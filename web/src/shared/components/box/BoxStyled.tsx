@@ -4,6 +4,7 @@ export const boxStyled = {
   alignItems: "center",
   width: "100vw",
   height: "100vh",
+  backgroundColor: "rgb(255, 251, 247)",
 };
 
 export const formBoxStyledReg = {
@@ -22,6 +23,6 @@ export const boxChatStyled = {
 
 export const boxInputChatStyled = {
   display: "flex",
-  // justifyContent: "center",
   margin: "30px 0 20px",
+  borderTop: "0.5px solid #000",
 };

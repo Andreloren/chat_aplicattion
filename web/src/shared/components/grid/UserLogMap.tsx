@@ -32,16 +32,21 @@ export const UserLogMap: React.FC<UserLoggedMap> = ({
         bgcolor: stringToColor(name),
         width: 30,
         height: 30,
-        margin: "10px",
+        // marginTop: "10px",
       },
       children: `${name.split(" ")[0][0]}`.toUpperCase(),
     };
   }
 
   return (
-    <Grid container alignItems="center" justifyContent="center" sx={{ gap: 1 }}>
+    <Grid
+      container
+      alignItems="center"
+      justifyContent="flex-start"
+      sx={{ gap: 1 }}
+    >
       <Avatar {...stringAvatar(`${username}`)} />
-      {username}
+      {username.toUpperCase()}
     </Grid>
   );
 };

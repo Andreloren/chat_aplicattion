@@ -34,6 +34,7 @@ import { getAllUsers } from "../../store/modules/users/usersSlice";
 import { addUserLoggedAPI } from "../../store/modules/usersLogged/usersLoggedSlice";
 import { getAllUsersAPI } from "../../store/modules/users/usersSlice";
 import { includeUserLocal } from "../../store/modules/userLocal/userLocalSlice";
+import { HeadingLoginStyled } from "../../shared/components/heading/HeadingStyled";
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -184,7 +185,6 @@ export const Login: React.FC = () => {
     };
 
     const username = newUserLogged.username;
-    console.log(username);
 
     socket.connect();
     dispatch(includeUserLocal(newUserLogged.username));
@@ -200,15 +200,11 @@ export const Login: React.FC = () => {
     <Box sx={boxStyled}>
       <Paper elevation={3} sx={paperStyledReg}>
         <Logo />
-        <Heading
-          text="APPLICATION CHAT"
-          psize="h5"
-          sx={{ mx: 3, mt: 1, color: "#2473ce" }}
-        />
+        <Heading text="APPLICATION CHAT" psize="h5" sx={HeadingLoginStyled} />
         <Heading
           text="Faça login e comece a usar!"
           psize="h6"
-          sx={{ mx: 3, mt: 1, color: "#2473ce" }}
+          sx={HeadingLoginStyled}
         />
         <Box sx={formBoxStyledReg}>
           <InputRegistration
