@@ -79,45 +79,46 @@ Após a configuração do banco de dados e das dependências, execute o seguinte
 
 ### Frontend
 
-"WEB
-├── public/
-│ ├── favicon.ico
-├── src/
-│ ├── assets/
-│ │ ├── images/
-│ ├── interfaces/
-│ ├── pages/
-│ │ ├── home/
-│ │ ├── login/
-│ │ ├── registration/
-│ ├── routes/
-│ ├── services/
-│ │ ├── api/
-│ ├── shared/
-│ │ ├── components/
-│ │ │ ├── box/
-│ │ │ ├── button/
-│ │ │ ├── footer/
-│ │ │ ├── grid/
-│ │ │ ├── heading/
-│ │ │ ├── input/
-│ │ │ ├── logo/
-│ │ │ ├── logout/
-│ │ │ ├── paper/
-│ │ │ ├── regex/
-│ │ │ ├── types/
-│ ├── store/
-│ │ ├── modules/
-│ │ │ ├── userLocal/
-│ │ │ ├── users/
-│ │ │ ├── usersLogged/
-│ ├── styles/
-│ ├── App.tsx
-│ ├── main.tsx
-├── index.html
-├── .gitignore
-├── tsconfig.json
-├── package.json
-└── ..."
+#### WEB
+
+- public/
+  - favicon.ico
+- src/
+  - assets/
+    - images/
+  - interfaces/
+  - pages/
+    - home/
+    - login/
+    - registration/
+  - routes/
+  - services/
+    - api/
+  - shared/
+    - components/
+      - box/
+      - button/
+      - footer/
+      - grid/
+      - heading/
+      - input/
+      - logo/
+      - logout/
+      - paper/
+      - regex/
+      - types/
+  - store/
+    - modules/
+      - userLocal/
+      - users/
+      - usersLogged/
+  - styles/
+  - App.tsx
+  - main.tsx
+- index.html
+- .gitignore
+- tsconfig.json
+- package.json
+- ...
 
 Trabalho final do Modulo Banco de Dados III da Growdev. API NoteSystem_API_Arquitetura a ser consumida pelo Note System [Note System Web](https://github.com/Andreloren/Note_System_Web)
