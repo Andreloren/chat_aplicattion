@@ -37,7 +37,7 @@ Backend:
 - TypeORM
 - Dotenv
 
-## 💻 Configuração do Ambiente
+## 💻 Configuração
 
 Clone este repositório para o seu ambiente local.
 
