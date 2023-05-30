@@ -38,7 +38,7 @@ Backend:
 - TypeORM
 - Dotenv
 
-## 💻 Configuração
+## ⚙️ Configuração
 
 Clone este repositório para o seu ambiente local.
 
@@ -76,7 +76,7 @@ Após a configuração do banco de dados e das dependências, execute o seguinte
 
 - npm run dev
 
-## 📓 Desenvolvimento
+## 👨‍💻 Desenvolvimento
 
 ### Frontend
 
@@ -149,10 +149,10 @@ Após a configuração do banco de dados e das dependências, execute o seguinte
 - package.json
 - ...
 
-## 📓 Contribuição
+## 🤝 Contribuição
 
 Se você deseja contribuir para este projeto, fique à vontade para abrir pull requests com suas alterações. Certifique-se de seguir as diretrizes de contribuição do projeto e de descrever claramente as alterações propostas.
 
-## 📓 Contato
+## 📱 Contato
 
-Em caso de dúvidas ou sugestões, entre em contato com [André Lorente](https://www.linkedin.com/in/andrelorente/).
+Em caso de dúvidas ou sugestões, entre em contato com [André Lorente](https://www.linkedin.com/in/andrelorente/){:target="\_blank"}.
