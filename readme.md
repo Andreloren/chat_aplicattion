@@ -155,4 +155,4 @@ Se você deseja contribuir para este projeto, fique à vontade para abrir pull r
 
 ## 📱 Contato
 
-Em caso de dúvidas ou sugestões, entre em contato com [André Lorente]<a href:"https://www.linkedin.com/in/andrelorente/" target="\_blank">.
+Em caso de dúvidas ou sugestões, entre em contato com [André Lorente](https://www.linkedin.com/in/andrelorente/).
