@@ -6,7 +6,7 @@ Aplicação de Chat On-line
 
 <p align="center">
   <a href="#-tecnologia">Tecnologias Utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-configuracao">Configuração do Ambiente</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-configuração">Configuração do Ambiente</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-desenvolvimento">Desenvolvimento</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-contato">Contato</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
@@ -68,11 +68,56 @@ Certifique-se de ter o PostgreSQL configurado corretamente em seu sistema. Crie 
 
 Este projeto utiliza o TypeORM para a criação e gerenciamento do banco de dados. Execute as migrações do banco de dados com o seguinte comando:
 
-"migration:create": "typeorm migration:create src/app/shared/database/migrations/CreateTable",
-"migration:show": "typeorm-ts-node-commonjs migration:show -d ./src/main/config/database.config.ts",
-"migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/main/config/database.config.ts",
-"migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./src/main/config/database.config.ts"
+- migration:run": Cria as tabelas no banco de dados.
+- migration:show: Mostra as migrations pendentes.
+
+Após a configuração do banco de dados e das dependências, execute o seguinte comando para iniciar o servidor:
+
+- npm run dev
 
 ## 📓 Desenvolvimento
+
+### Frontend
+
+WEB
+├── public/
+│ ├── favicon.ico
+├── src/
+│ ├── assets/
+│ │ ├── images/
+│ ├── interfaces/
+│ ├── pages/
+│ │ ├── home/
+│ │ ├── login/
+│ │ ├── registration/
+│ ├── routes/
+│ ├── services/
+│ │ ├── api/
+│ ├── shared/
+│ │ ├── components/
+│ │ │ ├── box/
+│ │ │ ├── button/
+│ │ │ ├── footer/
+│ │ │ ├── grid/
+│ │ │ ├── heading/
+│ │ │ ├── input/
+│ │ │ ├── logo/
+│ │ │ ├── logout/
+│ │ │ ├── paper/
+│ │ │ ├── regex/
+│ │ │ ├── types/
+│ ├── store/
+│ │ ├── modules/
+│ │ │ ├── userLocal/
+│ │ │ ├── users/
+│ │ │ ├── usersLogged/
+│ ├── styles/
+│ ├── App.tsx
+│ ├── main.tsx
+├── index.html
+├── .gitignore
+├── tsconfig.json
+├── package.json
+└── ...
 
 Trabalho final do Modulo Banco de Dados III da Growdev. API NoteSystem_API_Arquitetura a ser consumida pelo Note System [Note System Web](https://github.com/Andreloren/Note_System_Web)
