@@ -121,4 +121,31 @@ Após a configuração do banco de dados e das dependências, execute o seguinte
 - package.json
 - ...
 
+### Backend
+
+#### SERVER
+
+- src/
+  - app/
+    - envs/
+    - features/
+      - userLogged/
+      - users/
+    - models/
+    - shared/
+      - database/
+        - entities/
+        - migrations/
+      - utils/
+  - main/
+    - config/
+    - database/
+    - server/
+    - index.ts
+- .env-example
+- .gitignore
+- tsconfig.json
+- package.json
+- ...
+
 Trabalho final do Modulo Banco de Dados III da Growdev. API NoteSystem_API_Arquitetura a ser consumida pelo Note System [Note System Web](https://github.com/Andreloren/Note_System_Web)
