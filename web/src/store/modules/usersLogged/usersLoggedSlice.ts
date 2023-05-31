@@ -69,11 +69,9 @@ const usersLoggedSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(getAllUsersLoggedAPI.fulfilled, (state, action) => {
-      state.message = action.payload.message;
       userLoggedAdapter.setAll(state, action.payload.data);
     });
     builder.addCase(getUserLoggedByCpfAPI.fulfilled, (state, action) => {
-      state.message = action.payload.message;
       userLoggedAdapter.setOne(state, action.payload.data);
     });
     builder.addCase(addUserLoggedAPI.fulfilled, (state, action) => {

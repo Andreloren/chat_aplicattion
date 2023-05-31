@@ -32,7 +32,6 @@ import {
 export const Home: React.FC = () => {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  // const [userChat, setUserChat] = useState([]);
 
   const navigate = useNavigate();
 
@@ -48,8 +47,7 @@ export const Home: React.FC = () => {
     dispatch(getAllUsersLoggedAPI());
   }, [dispatch]);
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useEffect((): any => {
     socket.on("receive_message", (data) => {
       setMessageList((messages): any => [...messages, data]);
